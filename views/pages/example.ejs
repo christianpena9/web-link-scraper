@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% include ../partials/header.ejs %>
+</head>
+
+<body>
+
+  <% include ../partials/nav.ejs %>
+
+<div class="text-center">
+  <div class="container">
+    <form id="PythonCall" action="index.html" method="get">
+        <input class="inputELM" type="text" name="dlp-url" value="https://www.ralphlauren.com/brands-ralph-lauren-collection-women-spring-2020-blp-feat" placeholder="enter dlp url">
+        <button class="submitBTN" type="submit" value="submit" name="button">SUBMIT</button>
+    </form>
+  </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.submitBTN').on('click', function(e) {
+            e.preventDefault();
+            var inputVal = $('.inputELM').val();
+            if (inputVal === '') {
+                console.log('empty input, not valid');
+            } else {
+                $.ajax({
+                    method: "GET",
+                    url: "callPython",
+                    cache:false,
+                    async:'asynchronous',
+                    data: 'param=' + inputVal,
+                    dataType:'json',
+                    contentType: 'application/json',
+                    success: function(data, textStatus, jqXHR) {
+                        console.log(data);
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.log(textStatus);
+                        console.log(errorThrown);
+                    }
+                });
+                // $.ajax({
+                //     type:'get',
+                //     url:'callPython',
+                //     cache:false,
+                //     async:'asynchronous',
+                //     data: 'param=' + inputVal,
+                //     dataType:'json',
+                //     success: function(data, textStatus, jqXHR) {
+                //         console.log(data);
+                //     },
+                //     error: function(jqXHR, textStatus, errorThrown) {
+                //         console.log(jqXHR);
+                //     }
+                // });
+            }
+        });
+    });
+</script>
+</body>
+</html>
