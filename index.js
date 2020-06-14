@@ -27,6 +27,7 @@ express()
             }
             res.send(JSON.stringify(obj));
         });
+        //res.send(JSON.stringify({success: true}));
     })
     .get('/db', async (req, res) => {
         try {
