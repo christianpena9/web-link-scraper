@@ -9,18 +9,20 @@
   <% include ../partials/nav.ejs %>
 
 <div class="text-center">
-  <div class="container">
+  <div id="main" class="container">
     <form id="PythonCall" action="index.html" method="get">
-        <input class="inputELM" type="text" name="dlp-url" value="https://www.ralphlauren.com/brands-ralph-lauren-collection-women-spring-2020-blp-feat" placeholder="enter dlp url">
+        <input class="inputELM" type="text" name="dlp-url" value="https://www.ralphlauren.com/men?webcat=men" placeholder="enter a url">
         <button class="submitBTN" type="submit" value="submit" name="button">SUBMIT</button>
     </form>
   </div>
 </div>
+
 <script type="text/javascript">
     $(document).ready(function() {
         $('.submitBTN').on('click', function(e) {
             e.preventDefault();
             var inputVal = $('.inputELM').val();
+
             if (inputVal === '') {
                 console.log('empty input, not valid');
             } else {
@@ -33,7 +35,17 @@
                     dataType:'json',
                     contentType: 'application/json',
                     success: function(data, textStatus, jqXHR) {
-                        console.log(data);
+                        var $table = $('<table/>'),
+                            dataLen = data.length;
+
+                        $table.prepend('<th>' + 'SOURCECODE' + '</th>');
+                        $table.prepend('<th>' + 'HREF' + '</th>');
+
+                        for(var i = 0; i < dataLen; i++) {
+                            $table.append( '<tr><td><a href="' + data[i].href + '"' + ' target="_blank">' + data[i].href + '</a></td><td>' + data[i].statusCode + '</td></tr>' );
+                        }
+                        $('#main').append($table);
+
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
                         console.log(textStatus);

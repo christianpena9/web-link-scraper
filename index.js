@@ -22,10 +22,10 @@ express()
         // Takes stdout data from script which executed
         // with arguments and send this data to res object
         process.stdout.on('data', (data) => {
-            var obj = {
-                data: data.toString()
-            }
-            res.send(JSON.stringify(obj));
+            // var obj = {
+            //     data: data.toString()
+            // }
+            res.send(JSON.parse(data));
         });
         //res.send(JSON.stringify({success: true}));
     })

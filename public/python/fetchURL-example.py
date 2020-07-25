@@ -2,10 +2,9 @@ import sys
 import requests
 from bs4 import BeautifulSoup
 import json
-import re
 
-url = str(sys.argv[1])
-resp = requests.get(url)  # https://www.ralphlauren.com/men?webcat=men
+url = sys.argv[1]
+resp = requests.get('https://www.ralphlauren.com/men?webcat=men')  # https://www.ralphlauren.com/men?webcat=men
 page_links = {}
 page_links_arr = []
 statusCode = 0

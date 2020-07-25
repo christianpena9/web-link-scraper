@@ -1,0 +1,2 @@
+Notes:
+https://stackoverflow.com/questions/42723448/how-to-add-python-dependencies-to-heroku-node-server
